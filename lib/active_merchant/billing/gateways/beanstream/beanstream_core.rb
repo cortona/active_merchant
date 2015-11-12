@@ -380,6 +380,7 @@ module ActiveMerchant #:nodoc:
         else
           params[:username] = @options[:user] if @options[:user]
           params[:password] = @options[:password] if @options[:password]
+          params[:passCode] = @options[:api_key] if @options[:api_key]
           params[:merchant_id] = @options[:login]
         end
         params[:vbvEnabled] = '0'
