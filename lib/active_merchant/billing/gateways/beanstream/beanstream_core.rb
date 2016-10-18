@@ -215,17 +215,12 @@ module ActiveMerchant #:nodoc:
       end
 
       def add_check(post, check)
-        # The institution number of the consumer’s financial institution. Required for Canadian dollar EFT transactions.
+        post[:bankAccountType] = check.account_type
+        post[:bankAccountHolder] = check.first_name + check.last_name
         post[:institutionNumber] = check.institution_number
-
-        # The bank transit number of the consumer’s bank account. Required for Canadian dollar EFT transactions.
-        post[:transitNumber] = check.transit_number
-
-        # The routing number of the consumer’s bank account.  Required for US dollar EFT transactions.
-        post[:routingNumber] = check.routing_number
-
-        # The account number of the consumer’s bank account.  Required for both Canadian and US dollar EFT transactions.
+        post[:branchNumber] = check.number
         post[:accountNumber] = check.account_number
+        post[:routingNumber] = check.routing_number
       end
 
       def add_secure_profile_variables(post, options = {})
