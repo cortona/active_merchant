@@ -39,8 +39,8 @@ module ActiveMerchant #:nodoc:
           errors << [:account_holder_type, "must be personal or business"]
         end
 
-        if(!empty?(account_type) && !%w[checking savings].include?(account_type.to_s))
-          errors << [:account_type, "must be checking or savings"]
+        if(!empty?(account_type) && !%w[PC PS CC CS].include?(account_type.to_s))
+          errors << [:account_type, "must be PC, PS, CC or CS"]
         end
 
         errors_hash(errors)
