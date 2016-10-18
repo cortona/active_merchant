@@ -154,8 +154,10 @@ module ActiveMerchant #:nodoc:
       def store(payment_method, options = {})
         post = {}
         add_address(post, options)
-
-        if payment_method.respond_to?(:number)
+        
+        if payment_method.is_a? Check
+          add_check(post, payment_method)
+        elsif payment_method.respond_to?(:number)
           add_credit_card(post, payment_method)
         else
           post[:singleUseToken] = payment_method
